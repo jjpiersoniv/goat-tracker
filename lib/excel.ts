@@ -1,7 +1,7 @@
 import * as XLSX from 'xlsx'
 import { ScrapeResult, computeStats } from './scraper'
 
-export function buildExcel(results: ScrapeResult[]): Buffer {
+export function buildExcel(results: ScrapeResult[]): ArrayBuffer {
   const wb = XLSX.utils.book_new()
 
   for (const result of results) {
