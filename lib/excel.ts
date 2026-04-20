@@ -44,5 +44,5 @@ export function buildExcel(results: ScrapeResult[]): ArrayBuffer {
     XLSX.utils.book_append_sheet(wb, ws, sheetName)
   }
 
-return Buffer.from(XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }))
+return XLSX.write(wb, { type: 'array', bookType: 'xlsx' })
 }
