@@ -7,14 +7,13 @@ export async function POST(req: NextRequest) {
     const results: ScrapeResult[] = await req.json()
     const buf = buildExcel(results)
     const today = new Date().toISOString().split('T')[0]
-    const response = new NextResponse(buf, {
+    return new NextResponse(Buffer.from(buf), {
       status: 200,
       headers: {
         'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'Content-Disposition': `attachment; filename="RentTracker_${today}.xlsx"`,
       },
     })
-    return response
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Export failed'
     return NextResponse.json({ error: msg }, { status: 500 })
