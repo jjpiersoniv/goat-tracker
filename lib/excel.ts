@@ -1,7 +1,7 @@
 import * as XLSX from 'xlsx'
 import { ScrapeResult, computeStats } from './scraper'
 
-export function buildExcel(results: ScrapeResult[]): Uint8Array {
+export function buildExcel(results: ScrapeResult[]): Buffer {
   const wb = XLSX.utils.book_new()
 
   for (const result of results) {
@@ -44,5 +44,5 @@ export function buildExcel(results: ScrapeResult[]): Uint8Array {
     XLSX.utils.book_append_sheet(wb, ws, sheetName)
   }
 
-  return Buffer.from(XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }))
+return Buffer.from(XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }))
 }
